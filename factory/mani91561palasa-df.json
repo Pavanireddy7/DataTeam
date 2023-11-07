@@ -1,0 +1,9 @@
+{
+	"name": "mani91561palasa-df",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "0170dc55-9714-43f3-8e91-ae0c8d59a87c",
+		"tenantId": "887850fe-e1f0-4b0a-a53b-4d9c025d9979"
+	}
+}

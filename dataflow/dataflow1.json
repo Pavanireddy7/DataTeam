@@ -1,0 +1,101 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "SmartfoodsDelimitedText",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          CustomerID as short,",
+				"          CustomerName as string,",
+				"          BillToCustomerID as short,",
+				"          CustomerCategoryID as short,",
+				"          BuyingGroupID as short,",
+				"          PrimaryContactPersonID as short,",
+				"          AlternateContactPersonID as short,",
+				"          DeliveryMethodID as short,",
+				"          DeliveryCityID as integer,",
+				"          PostalCityID as integer,",
+				"          CreditLimit as double,",
+				"          AccountOpenedDate as string,",
+				"          StandardDiscountPercentage as double,",
+				"          IsStatementSent as boolean,",
+				"          IsOnCreditHold as boolean,",
+				"          PaymentDays as short,",
+				"          PhoneNumber as string,",
+				"          FaxNumber as string,",
+				"          DeliveryRun as string,",
+				"          RunPosition as string,",
+				"          WebsiteURL as string,",
+				"          DeliveryAddressLine1 as string,",
+				"          DeliveryAddressLine2 as string,",
+				"          DeliveryPostalCode as integer,",
+				"          PostalAddressLine1 as string,",
+				"          PostalAddressLine2 as string,",
+				"          PostalPostalCode as integer,",
+				"          LastEditedBy as short,",
+				"          ValidFrom as string,",
+				"          ValidTo as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(FirstName = split(CustomerName,\" \")[1],",
+				"          LastName = split(CustomerName,\" \")[2]) ~> derivedColumn1",
+				"derivedColumn1 select(mapColumn(",
+				"          CustomerID,",
+				"          CustomerName,",
+				"          BillToCustomerID,",
+				"          CustomerCategoryID,",
+				"          BuyingGroupID,",
+				"          PrimaryContactPersonID,",
+				"          AlternateContactPersonID,",
+				"          DeliveryMethodID,",
+				"          DeliveryCityID,",
+				"          PostalCityID,",
+				"          CreditLimit,",
+				"          AccountOpenedDate,",
+				"          StandardDiscountPercentage,",
+				"          IsStatementSent,",
+				"          IsOnCreditHold,",
+				"          PaymentDays,",
+				"          PhoneNumber,",
+				"          FaxNumber,",
+				"          DeliveryRun,",
+				"          RunPosition,",
+				"          WebsiteURL,",
+				"          DeliveryAddressLine1,",
+				"          DeliveryAddressLine2,",
+				"          DeliveryPostalCode,",
+				"          PostalAddressLine1,",
+				"          PostalAddressLine2,",
+				"          PostalPostalCode,",
+				"          LastEditedBy,",
+				"          ValidFrom,",
+				"          ValidTo,",
+				"          FirstName,",
+				"          LastName",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1"
+			]
+		}
+	}
+}
